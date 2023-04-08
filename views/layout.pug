@@ -1,0 +1,25 @@
+block variables 
+doctype html 
+html 
+  head
+    meta(charset="utf-8")
+    title #{title} | Pizza Shop
+    block scripts 
+      link(rel="stylesheet", type="text/css", href="/styles.css")
+  body
+    header#header 
+      .header-content   
+        h1#site-name 
+          a(href="/") PizzaClub
+      nav 
+        ul 
+          li
+            a(href="/") Pizza
+          li
+            a(href="/drinks") Drinks
+          li About 
+          li Contact
+    main#main
+      block main-content
+    footer#footer 
+      p &copy; Copyright HTTP5211, 2023.

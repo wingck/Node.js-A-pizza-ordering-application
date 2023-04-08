@@ -1,0 +1,8 @@
+extends layout 
+
+block main-content 
+  h1.page-title Pizza Info
+  img(src=`${info.img}` alt=`${info.name}`)
+  div
+    p #{info.name}
+    p Description: #{info.description}

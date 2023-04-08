@@ -1,0 +1,108 @@
+extends layout 
+
+block main-content 
+  h2.page-title Drinks Info
+  div.drink-box-big
+    each drink in drinks
+      div.drink-box-small
+        div
+          img(src=`${drink.img[0].sm}` alt=`${drink.name}`)
+        form.submit-form
+          p.drink_name #{drink.name}
+          p price: $#{drink.price}
+          p.drink_price #{drink.price}
+          p Quantitiy
+            input(type="number" class="drink_num" min="0")
+          input(type="submit" value="Add to List" class="submit-drink")
+  div.checklist
+    div#drink_title Drinks
+    div#num_title Quantity 
+    div#price_title Price
+    div#display_drink
+    div#display_num
+    div#display_price
+  button(onclick="confirmOrder()" class="checkout") Checkout
+  div#confirm_box
+    div Do you confirm below item(s)?
+    div Quantity 
+    div Price
+    div#confirm_drink
+    div#confirm_num
+    div#confirm_price
+    div
+    div
+    div.popup
+      button.order_button Pay my order
+      button(onclick='goBack()' class='order_button') Cancel
+  script.
+    var submitButton = document.getElementsByClassName("submit-drink");
+    for(var i = 0; i<15 ; i++ ){
+      submitButton[i].style.display = "none";
+    }
+    
+    var displayDrink = document.getElementById("display_drink");
+    var displayNum = document.getElementById("display_num");
+    var displayPrice = document.getElementById("display_price");
+    var confirmDrink = document.getElementById("confirm_drink");
+    var confirmNum = document.getElementById("confirm_num");
+    var confirmPrice = document.getElementById("confirm_price");
+    var drinkName = document.getElementsByClassName("drink_name");
+    var drinkPrice = document.getElementsByClassName("drink_price");
+    var drinkNum = document.getElementsByClassName("drink_num");
+    var confirmBox = document.getElementById("confirm_box");
+    var totalPrice = document.getElementById("total_price");
+    var drinkTitle = document.getElementById("drink_title");
+    var numTitle = document.getElementById("num_title");
+    var priceTitle = document.getElementById("price_title");
+    
+    var formSubmit = document.getElementsByClassName("submit-form");
+    for(var i = 0; i < formSubmit.length; i++){
+      formSubmit[i].onsubmit = processForm;
+    }
+
+    drinkTitle.style.display = "none";
+    numTitle.style.display = "none";
+    priceTitle.style.display = "none";
+    function processForm(){
+
+      drinkTitle.style.display = "block";
+      numTitle.style.display = "block";
+      priceTitle.style.display = "block";
+      
+      displayDrink.innerHTML = "";
+      displayNum.innerHTML = "";
+      displayPrice.innerHTML = "";
+
+      confirmDrink.innerHTML = "";
+      confirmNum.innerHTML = "";
+      confirmPrice.innerHTML = "";
+
+      for(var i = 0; i < drinkName.length; i++){
+        if(drinkNum[i].value != ""){
+        displayDrink.innerHTML += "<div>"+drinkName[i].innerText+"</div>";
+        confirmDrink.innerHTML += "<div>"+drinkName[i].innerText+"</div>";
+        }
+      }
+      for(var i = 0; i < drinkNum.length; i++){
+        displayNum.innerHTML += "<div>"+drinkNum[i].value+"</div>";
+        confirmNum.innerHTML += "<div>"+drinkNum[i].value+"</div>";
+      }
+      for(var i = 0; i < drinkPrice.length; i++){
+        if(drinkNum[i].value != ""){
+        displayPrice.innerHTML += "<div>$"+drinkPrice[i].innerText+"</div>";
+        confirmPrice.innerHTML += "<div>$"+drinkPrice[i].innerText+"</div>";
+        }
+      
+      } 
+      return false;
+      }
+
+      confirmBox.style.display = "none";
+
+      function confirmOrder(){
+        confirmBox.style.display = "grid";
+      }
+
+      function goBack(){
+        confirmBox.style.display = "none";
+      }

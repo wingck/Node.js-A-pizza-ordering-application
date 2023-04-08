@@ -1,0 +1,191 @@
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@500&family=Lato:wght@700&family=Merriweather:ital,wght@1,700&family=Raleway:wght@900&display=swap');
+html{
+  background-color: #e5e5f7;
+  background-image:  linear-gradient(135deg, rgba(251,251,210,1) 25%, transparent 25%), linear-gradient(225deg, rgba(251,251,210,1) 25%, transparent 25%), linear-gradient(45deg, rgba(251,251,210,1) 25%, transparent 25%), linear-gradient(315deg, rgba(251,251,210,1) 25%, #e5e5f7 25%);
+  background-position:  10px 0, 10px 0, 0 0, 0 0;
+  background-size: 20px 20px;
+  background-repeat: repeat;
+}
+body {
+position:relative;
+font-size: 18px;
+font-family: 'Josefin Sans', sans-serif;
+max-height:2000px;
+z-index: 0;
+margin: 0;
+padding: 0;
+}
+#header{
+  background-color: black;
+  color:white;
+  overflow:hidden;
+  padding-left: 10px;
+}
+#header a{
+  color: white;
+}
+#site-name{
+  animation: light 1s infinite;
+}
+#main{
+  border-top: 1px solid black;
+  padding-left: 10px;
+}
+a{
+  text-decoration: none;
+}
+img{
+  width: 200px;
+  border: 2px solid black;
+  border-radius: 50px;
+}
+nav{
+  font-size: 30px;
+  margin: 0 30%;
+}
+nav a:hover{
+  animation: lightHover 0.25s forwards; 
+}
+ul{
+  display: flex;
+}
+li{
+  list-style-type: none;
+  padding-left: 30px;
+}
+.pizza-box-big, .drink-box-big{
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+}
+.checklist{
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+}
+.checkout, .submit, .submit-drink, .popup button{
+  margin-top: 10px;
+  border-radius: 10px;
+  font-size: 16px;
+  width: 170px;
+  font-family: 'Josefin Sans', sans-serif;
+}
+.popup{
+  display: grid;
+  grid-template-columns: 1fr;
+  white-space: nowrap;
+}
+#confirm_box{
+  padding: 10px;
+  border-radius: 30px;
+  background-color: rgb(251, 251, 224);
+  top:40%;
+  width: 80%;
+  margin: 0 10%;
+  position: fixed;
+  grid-template-columns: 1fr 1fr 1fr;
+  z-index:4;
+  box-shadow: 10px 2px 20px black;
+}
+form .pizza_price, form .drink_price{
+  display: none;
+}
+input[type=number]{
+border-radius: 5px;
+border-color: blue;
+}
+.img_effect:hover{
+  animation: effect 0.4s forwards;
+}
+#pizza_title, #num_title, #price_title, #drink_title{
+  border-bottom: 1px solid black;
+  margin-top: 10px;
+}
+#confirm_pizza, #confirm_num, #confirm_price, #confirm_drink{
+  border-top: 1px solid black;
+}
+#cart{
+  position: fixed;
+  z-index: 2;
+}
+#cart img{
+  width: 50px;
+}
+@keyframes effect{
+  0%{
+    box-shadow: 0 ;
+}
+100%{
+    box-shadow: 10px 2px 20px black;
+}
+}
+@keyframes light{
+  0%{
+    text-shadow: 0;
+  }
+  50%{ 
+  text-shadow: 
+  1px 1px 10px #f8c0dc,
+  3px 3px 20px #ff99cc,
+  -2px 1px 30px #ff99cc;
+  }
+  100%{
+    text-shadow: 0;
+  }
+}
+@keyframes lightHover{
+  0%{
+    text-shadow: 0;
+  }
+  100%{ 
+  text-shadow: 
+  1px 1px 10px #f8c0dc,
+  3px 3px 20px #ff99cc,
+  -2px 1px 30px #ff99cc;
+  }
+}
+@media only screen and (max-width: 1060px) {
+  .pizza-box-big, .drink-box-big{
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+  }
+  .submit{
+    position: relative;
+    right:200%;
+  }
+  .submit-drink{
+    position: relative;
+    right:300%;
+  }
+}
+@media only screen and (max-width: 1000px){
+  nav{
+    margin: 0 15%;
+  }
+}
+@media only screen and (max-width: 900px) and (min-width:880px) {
+  .submit-drink{
+    margin-top: 20px;
+  }
+}
+@media only screen and (max-width: 880px) {
+  .pizza-box-big, .drink-box-big{
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+  .submit, .submit-drink{
+    right: 0;
+  }
+}
+@media only screen and (max-width: 700px){
+  nav{
+    margin: 0 ;
+  }
+  nav li{
+    padding-left: 10px;
+  }
+}
+@media only screen and (max-width: 650px) {
+  .pizza-box-big, .drink-box-big{
+    grid-template-columns: 1fr 1fr;
+  }
+  .submit-drink{
+    right: 100%;
+  }
+}

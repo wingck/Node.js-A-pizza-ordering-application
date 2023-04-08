@@ -1,0 +1,116 @@
+extends layout 
+
+
+block main-content 
+  //You can overwrite the main-content block by writing block content
+  //in the template file which is extending.
+  h2#page-title We offer you the most delicious pizzas in the world!
+  div.pizza-box-big
+    each pizza in pizzas
+      div.pizza-box-small
+        div
+          a(href=`/pizza-info?id=${pizza.id}`)
+            img(src=`${pizza.img}` class="img_effect" alt=`${pizza.name}`)
+        form.submit-form
+          p.pizza_name #{pizza.name}
+          p price: $#{pizza.price}
+          p.pizza_price #{pizza.price}
+          p Quantitiy
+            input(type="number" class="pizza_num" min="0")
+          div
+            input(type="submit" value="Add to List" class="submit")
+  div.checklist
+    div#pizza_title Pizza
+    div#num_title Quantity 
+    div#price_title Price
+    div#display_pizza
+    div#display_num
+    div#display_price
+  button(onclick="confirmOrder()" class="checkout") Checkout
+  div#confirm_box
+    div Do you confirm below item(s)?
+    div Quantity 
+    div Price
+    div#confirm_pizza
+    div#confirm_num
+    div#confirm_price
+    div
+    div
+    div.popup
+      button
+        a(href='/drinks') Add and order drinks
+      button.order_button Pay my order
+      button(onclick='goBack()' class='order_button') Cancel
+  script.
+    var submitButton = document.getElementsByClassName("submit")
+    for(var i = 0; i < 30; i++){
+      submitButton[i].style.display = "none";
+    }
+    
+    var displayPizza = document.getElementById("display_pizza");
+    var displayNum = document.getElementById("display_num");
+    var displayPrice = document.getElementById("display_price");
+    var confirmPizza = document.getElementById("confirm_pizza");
+    var confirmNum = document.getElementById("confirm_num");
+    var confirmPrice = document.getElementById("confirm_price");
+    var pizzaName = document.getElementsByClassName("pizza_name");
+    var pizzaPrice = document.getElementsByClassName("pizza_price");
+    var pizzaNum = document.getElementsByClassName("pizza_num");
+    var confirmBox = document.getElementById("confirm_box");
+    var totalPrice = document.getElementById("total_price");
+    var pizzaTitle = document.getElementById("pizza_title");
+    var numTitle = document.getElementById("num_title");
+    var priceTitle = document.getElementById("price_title");
+    var cart = document.getElementById("cart");
+    
+    var formSubmit = document.getElementsByClassName("submit-form");
+    for(var i = 0; i < formSubmit.length; i++){
+      formSubmit[i].onsubmit = processForm;
+    }
+
+    pizzaTitle.style.display = "none";
+    numTitle.style.display = "none";
+    priceTitle.style.display = "none";
+    function processForm(){
+    pizzaTitle.style.display = "block";
+    numTitle.style.display = "block";
+    priceTitle.style.display = "block";
+      
+      displayPizza.innerHTML = "";
+      displayNum.innerHTML = "";
+      displayPrice.innerHTML = "";
+      confirmPizza.innerHTML = "";
+      confirmNum.innerHTML = "";
+      confirmPrice.innerHTML = "";
+
+      for(var i = 0; i < pizzaName.length; i++){
+        if(pizzaNum[i].value != ""){
+        displayPizza.innerHTML += "<div>"+pizzaName[i].innerText+"</div>";
+        confirmPizza.innerHTML += "<div>"+pizzaName[i].innerText+"</div>";
+        }
+      }
+      for(var i = 0; i < pizzaNum.length; i++){
+        displayNum.innerHTML += "<div>"+pizzaNum[i].value+"</div>";
+        confirmNum.innerHTML += "<div>"+pizzaNum[i].value+"</div>";
+      }
+      for(var i = 0; i < pizzaPrice.length; i++){
+        if(pizzaNum[i].value != ""){
+        displayPrice.innerHTML += "<div>$"+pizzaPrice[i].innerText+"</div>";
+        confirmPrice.innerHTML += "<div>$"+pizzaPrice[i].innerText+"</div>";
+        }
+      
+      } 
+      return false;
+      }
+
+        confirmBox.style.display = "none";
+        cart.style.display = "none";
+      function confirmOrder(){
+        confirmBox.style.display = "grid";
+        cart.style.display = "block";
+      }
+
+      function goBack(){
+        confirmBox.style.display = "none";
+        cart.style.display = "none";
+      }
