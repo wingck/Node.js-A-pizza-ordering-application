@@ -6,7 +6,8 @@ block main-content
     each drink in drinks
       div.drink-box-small
         div
-          img(src=`${drink.img[0].sm}` alt=`${drink.name}`)
+          a(href="#")
+            img(src=`${drink.img[0].sm}` alt=`${drink.name}`)
         form.submit-form
           p.drink_name #{drink.name}
           p price: $#{drink.price}

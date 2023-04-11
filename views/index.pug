@@ -16,7 +16,7 @@ block main-content
           p price: $#{pizza.price}
           p.pizza_price #{pizza.price}
           p Quantitiy
-            input(type="number" class="pizza_num" min="0")
+            input(type="number" class="pizza_num" min="0" name=`${pizza.name}`)
           div
             input(type="submit" value="Add to List" class="submit")
   div.checklist
@@ -37,8 +37,8 @@ block main-content
     div
     div
     div.popup
-      button
-        a(href='/drinks') Add and order drinks
+      a(href='/drinks')
+        button Add and order drinks
       button.order_button Pay my order
       button(onclick='goBack()' class='order_button') Cancel
   script.
